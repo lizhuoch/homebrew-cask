@@ -11,16 +11,22 @@ cask "anaconda" do
 
   installer script: {
     executable: "Anaconda3-#{version}-MacOSX-x86_64.sh",
-    args:       ["-b", "-p", "#{HOMEBREW_PREFIX}/anaconda3"],
+    args:       ["-f", "-b", "-p", "#{HOMEBREW_PREFIX}"],
     sudo:       true,
   }
 
   postflight do
-    set_ownership "#{HOMEBREW_PREFIX}/anaconda3"
+    set_ownership "#{HOMEBREW_PREFIX}"
   end
 
   uninstall delete: [
-    "#{HOMEBREW_PREFIX}/anaconda3",
+    "#{HOMEBREW_PREFIX}/conda-meta",
+    "#{HOMEBREW_PREFIX}/condabin",
+    "#{HOMEBREW_PREFIX}/envs",
+    "#{HOMEBREW_PREFIX}/LICENSE.txt",
+    "#{HOMEBREW_PREFIX}/pkgs",
+    "#{HOMEBREW_PREFIX}/shell",
+    "#{HOMEBREW_PREFIX}/ssl,"
     "/Applications/Anaconda-Navigator.app",
   ]
 
